@@ -17,6 +17,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://content.app-sources.com" crossorigin>
+  <link rel="preload" as="image" href="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
@@ -82,6 +84,12 @@
     .section {
       padding: 80px 0;
       border-top: 1px solid var(--border);
+    }
+    .section,
+    .footer,
+    .cta-final {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 900px;
     }
 
     .section-eyebrow {
@@ -1106,7 +1114,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp" alt="Angel Rocha — Consultor y educador en IA" width="600" height="750" fetchpriority="high">
+        <img src="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp" alt="Angel Rocha — Consultor y educador en IA" width="600" height="750" fetchpriority="high" loading="eager" decoding="async">
         <div class="sticker">MASTER<br>EN IA</div>
       </div>
     </div>
