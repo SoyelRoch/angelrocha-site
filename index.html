@@ -160,6 +160,22 @@
     .btn-primary:hover {
       background: #fff;
     }
+    .btn-pulse {
+      animation: button-pulse 1.8s ease-in-out infinite;
+    }
+    .btn-pulse:hover {
+      animation-play-state: paused;
+    }
+    @keyframes button-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(229, 255, 0, 0.55);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 0 0 10px rgba(229, 255, 0, 0);
+      }
+    }
     .btn-primary-lg {
       padding: 18px 32px;
       font-size: 18px;
@@ -1037,7 +1053,7 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 12px;">
-        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=nav" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=nav" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pulse">
           Regístrate al webinar
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
