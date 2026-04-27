@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angel Rocha — IA & Automatización | Strategy First</title>
+  <meta name="description" content="Consultor y educador en IA con 13+ años de experiencia. Estrategia primero. Dirección antes que herramientas. Aprende a usar IA como un activo, no como un truco.">
+  <meta name="author" content="Angel Rocha">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Angel Rocha — IA & Automatización">
+  <meta property="og:description" content="Estrategia primero. Dirección antes que herramientas. Aprende a usar IA como un activo, no como un truco.">
+  <meta property="og:url" content="https://angelrocha.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-main: #0A0A0A;
+      --bg-card: #141414;
+      --bg-elevated: #1F1F1F;
+      --border: #262626;
+      --primary: #E5FF00;
+      --text-primary: #FFFFFF;
+      --text-muted: #A3A3A3;
+      --alert: #FF3B30;
+      --success: #00E676;
+
+      --font-display: 'Anton', sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+    }
+
+    /* ===== UTILITIES ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      color: var(--primary);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg-main);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--primary);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .nav-logo .dot { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-link {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.15s ease;
+    }
+    .nav-link:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+    .btn-primary:hover {
+      background: #fff;
+    }
+    .btn-primary-lg {
+      padding: 18px 32px;
+      font-size: 18px;
+    }
+    .btn-primary-xl {
+      padding: 22px 40px;
+      font-size: 20px;
+    }
+    .btn-outline {
+      border-color: var(--primary);
+      color: var(--primary);
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #000;
+    }
+    .btn-dark {
+      background: #000;
+      color: var(--primary);
+      padding: 22px 40px;
+      font-size: 20px;
+    }
+    .btn-dark:hover {
+      background: var(--bg-main);
+    }
+
+    .nav-toggle {
+      display: none;
+      color: #fff;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: var(--bg-main);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px;
+      gap: 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: #fff;
+      padding: 8px;
+    }
+    .mobile-menu-link {
+      font-family: var(--font-display);
+      font-size: 48px;
+      text-transform: uppercase;
+      transition: color 0.15s ease;
+    }
+    .mobile-menu-link:hover { color: var(--primary); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 80px 32px 60px;
+    }
+    .hero-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 160px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .strike {
+      position: relative;
+      display: inline-block;
+      color: var(--primary);
+    }
+    .strike::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 50%;
+      height: 6px;
+      background: var(--primary);
+      transform: rotate(-3deg) translateY(-50%);
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .link-secondary {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 500;
+    }
+    .link-secondary:hover { color: var(--primary); }
+    .hero-photo {
+      position: relative;
+    }
+    .hero-photo img {
+      filter: grayscale(100%) contrast(1.15);
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+    .sticker {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 130px;
+      height: 130px;
+      background: var(--primary);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      text-align: center;
+      line-height: 1.05;
+      text-transform: uppercase;
+      animation: spin-slow 12s linear infinite;
+      z-index: 2;
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee {
+      background: var(--primary);
+      color: #000;
+      overflow: hidden;
+      padding: 16px 0;
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+      font-family: var(--font-display);
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .marquee-track span { padding: 0 28px; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== SOBRE ===== */
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 80px);
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 32px;
+    }
+    .about-text {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .signature {
+      margin-top: 16px;
+    }
+
+    /* ===== STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 32px 24px;
+      transition: all 0.2s ease;
+    }
+    .stat-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .stat-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--primary);
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+    }
+
+    /* ===== EVENTOS ===== */
+    .event-featured {
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      color: var(--alert);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--alert);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .event-date {
+      font-family: var(--font-display);
+      color: var(--primary);
+      font-size: clamp(24px, 3vw, 36px);
+      margin-bottom: 8px;
+    }
+    .event-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 56px);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .event-desc {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 640px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .event-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .event-meta span {
+      background: var(--bg-main);
+      padding: 6px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .event-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .event-card-date {
+      font-family: var(--font-mono);
+      color: var(--primary);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .event-card-type {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+    .event-card-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .event-card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      margin-bottom: 16px;
+    }
+    .badge-alert {
+      background: rgba(255, 59, 48, 0.1);
+      color: var(--alert);
+    }
+    .badge-success {
+      background: rgba(0, 230, 118, 0.1);
+      color: var(--success);
+    }
+    .event-card-link {
+      color: var(--primary);
+      font-size: 14px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ===== VIDEOS ===== */
+    .channel-link {
+      color: var(--primary);
+    }
+    .channel-link:hover { text-decoration: underline; }
+
+    .video-featured {
+      cursor: pointer;
+      margin-bottom: 48px;
+      display: block;
+    }
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #2a2a2a;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .video-featured:hover .video-thumb img { transform: scale(1.04); }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+      z-index: 2;
+    }
+    .video-featured:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); }
+    .play-btn svg {
+      color: #000;
+      margin-left: 4px;
+    }
+    .video-duration {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .video-featured h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .video-meta {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: block;
+    }
+    .video-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .video-card .video-thumb { margin-bottom: 0; }
+    .video-card .play-btn {
+      width: 44px;
+      height: 44px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .video-card .play-btn svg { width: 18px; height: 18px; margin-left: 2px; }
+    .video-card:hover .play-btn { opacity: 1; }
+    .video-card .video-duration {
+      bottom: 8px;
+      right: 8px;
+      font-size: 10px;
+      padding: 3px 6px;
+    }
+    .video-card-info {
+      padding: 16px;
+    }
+    .video-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .video-card-meta {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .videos-cta {
+      font-family: var(--font-display);
+      color: var(--primary);
+      font-size: 22px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      transition: color 0.15s ease;
+    }
+    .videos-cta:hover { color: #fff; }
+
+    /* ===== PRODUCTOS ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .product-card {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-lite {
+      background: var(--bg-card);
+      border: 1px solid var(--primary);
+    }
+    .product-full {
+      background: var(--primary);
+      color: #000;
+      border: 1px solid var(--primary);
+    }
+    .product-1on1 {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .product-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 4px 8px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .badge-free {
+      background: rgba(0, 230, 118, 0.15);
+      color: var(--success);
+    }
+    .badge-popular {
+      background: #000;
+      color: var(--primary);
+    }
+    .badge-highticket {
+      background: rgba(229, 255, 0, 0.1);
+      color: var(--primary);
+    }
+    .product-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .product-full .product-title { color: #000; }
+    .product-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .product-full .product-desc { color: rgba(0,0,0,0.7); }
+    .product-features {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .product-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .product-full .product-features li { color: rgba(0,0,0,0.85); }
+    .product-features li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .product-full .product-features li::before { color: #000; }
+    .product-cta {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      width: fit-content;
+      transition: all 0.15s ease;
+      padding: 8px 0;
+    }
+    .product-lite .product-cta {
+      color: var(--primary);
+    }
+    .product-lite .product-cta:hover { color: #fff; }
+    .product-full .product-cta {
+      background: #000;
+      color: var(--primary);
+      padding: 12px 20px;
+    }
+    .product-full .product-cta:hover { background: var(--bg-main); }
+    .product-1on1 .product-cta {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 12px 20px;
+    }
+    .product-1on1 .product-cta:hover {
+      background: var(--primary);
+      color: #000;
+    }
+
+    /* ===== CTA FINAL ===== */
+    .cta-final {
+      background: var(--primary);
+      color: #000;
+      padding: 100px 32px;
+      text-align: center;
+    }
+    .cta-final h2 {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 10vw, 140px);
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 24px;
+    }
+    .cta-final p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 60px 32px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      font-weight: normal;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .footer-contact-muted {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-bottom > div {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-bottom .mono {
+      font-family: var(--font-mono);
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-overlay.open { display: flex; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal {
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      padding: 32px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+    .modal-close {
+      color: #fff;
+      padding: 4px;
+      transition: color 0.15s ease;
+    }
+    .modal-close:hover { color: var(--primary); }
+    .modal-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .modal label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #fff;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .modal input {
+      width: 100%;
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.15s ease;
+    }
+    .modal input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .modal-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #000;
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      text-transform: uppercase;
+      transition: background 0.15s ease;
+    }
+    .modal-btn:hover { background: #fff; }
+
+    /* ===== ICONS ===== */
+    .icon { display: inline-block; vertical-align: middle; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-photo {
+        max-width: 400px;
+        order: -1;
+      }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .section { padding: 60px 0; }
+      .hero { padding: 40px 20px; }
+      .nav-inner { padding: 12px 20px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav .btn-primary { padding: 10px 16px; font-size: 12px; }
+      .hero-title { font-size: clamp(40px, 12vw, 64px); }
+      .hero-photo {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      .sticker {
+        width: 95px;
+        height: 95px;
+        font-size: 13px;
+        top: -10px;
+        right: -10px;
+      }
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { width: 100%; }
+      .marquee-track { font-size: 16px; }
+      .marquee-track span { padding: 0 16px; }
+      .events-grid { grid-template-columns: 1fr; }
+      .videos-grid { grid-template-columns: 1fr; gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .cta-final { padding: 60px 20px; }
+      .cta-final h2 { font-size: clamp(40px, 12vw, 80px); }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-num { font-size: 56px; }
+      .event-featured { padding: 24px; }
+      .event-title { font-size: 32px; }
+    }
+
+    /* ===== ACCESSIBILITY ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Angel Rocha <span class="dot">•</span></a>
+
+      <div class="nav-links">
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#eventos" class="nav-link">Eventos</a>
+        <a href="#videos" class="nav-link">Videos</a>
+        <a href="#productos" class="nav-link">Productos</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=nav" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Regístrate al webinar
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+    <a href="#sobre" class="mobile-menu-link" data-close-menu>Sobre</a>
+    <a href="#eventos" class="mobile-menu-link" data-close-menu>Eventos</a>
+    <a href="#videos" class="mobile-menu-link" data-close-menu>Videos</a>
+    <a href="#productos" class="mobile-menu-link" data-close-menu>Productos</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="section-eyebrow">// Consultor & Educador en IA</div>
+        <h1 class="hero-title">
+          Deja de<br>
+          <span class="strike">improvisar</span><br>
+          con la IA.
+        </h1>
+        <p class="hero-sub">
+          Estrategia primero. Dirección antes que herramientas.
+          Aprende a usar IA como un activo, no como un truco.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=hero" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-lg">
+            Regístrate al webinar gratis →
+          </a>
+          <a href="#videos" class="link-secondary">
+            Ver últimos videos ↓
+          </a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://placehold.co/600x750/141414/A3A3A3?text=Tu+Foto+Aqui" alt="Angel Rocha">
+        <div class="sticker">13+<br>AÑOS<br>EN IA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Strategy First</span><span>•</span>
+      <span>1,000+ Automatizaciones</span><span>•</span>
+      <span>Master en IA</span><span>•</span>
+      <span>LatAm</span><span>•</span>
+      <span>IA Academy</span><span>•</span>
+      <span>Strategy First</span><span>•</span>
+      <span>1,000+ Automatizaciones</span><span>•</span>
+      <span>Master en IA</span><span>•</span>
+      <span>LatAm</span><span>•</span>
+      <span>IA Academy</span><span>•</span>
+    </div>
+  </div>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="section-eyebrow">// 01 — Sobre</div>
+      <h2 class="about-title">No soy otro<br>gurú de IA.</h2>
+      <div class="about-text">
+        <p>Llevo 13+ años haciendo consultoría real. He implementado más de 1,000 automatizaciones en empresas de LatAm. Tengo un Master en IA. Y enseño en español.</p>
+        <p>Mi enfoque es simple: la IA no se trata de la herramienta de moda. Se trata de tener un sistema. Por eso creé el framework P.A.S.O. — Perfil, Antecedentes, Solicitud, Output — para que cualquier profesional pueda dejar de improvisar.</p>
+        <p>Si estás cansado de tutoriales que no llevan a nada, IA Academy es para ti.</p>
+        <div class="signature">
+          <svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 30C30 10 50 35 70 20C90 5 110 25 130 15C150 5 170 20 190 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <text x="10" y="38" fill="#A3A3A3" font-family="Inter, sans-serif" font-size="12">— Angel Rocha</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section id="numeros" class="section">
+    <div class="container">
+      <div class="section-eyebrow">// 02 — Los números no mienten</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">+1,000</div>
+          <div class="stat-label">Automatizaciones implementadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">13+</div>
+          <div class="stat-label">Años de consultoría</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Master</div>
+          <div class="stat-label">En Inteligencia Artificial</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">LatAm</div>
+          <div class="stat-label">Alcance en 12+ países</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTOS ===== -->
+  <section id="eventos" class="section">
+    <div class="container">
+      <div class="section-eyebrow">// 03 — Próximos eventos</div>
+      <p class="section-intro">Reserva tu lugar antes de que se acabe.</p>
+
+      <div class="event-featured">
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          <span>En vivo esta semana</span>
+        </div>
+        <div class="event-date">Jueves 30 / Abril · 8PM CDMX</div>
+        <h3 class="event-title">De improvisar<br>a dominar la IA</h3>
+        <p class="event-desc">Webinar gratuito de 90 minutos. Te llevo del caos al sistema con el framework P.A.S.O.</p>
+        <div class="event-meta">
+          <span>🟡 Gratis</span>
+          <span>90 min</span>
+          <span>En vivo + grabación</span>
+        </div>
+        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=evento-featured" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-lg">
+          Apartar mi lugar →
+        </a>
+      </div>
+
+      <div class="events-grid">
+        <a href="#" class="event-card">
+          <div class="event-card-date">15 MAY</div>
+          <div class="event-card-type">// Hackathon</div>
+          <h4 class="event-card-title">Hackathon GPTs</h4>
+          <p class="event-card-desc">Construye GPTs útiles en 3 horas. Mentoría en vivo.</p>
+          <div class="badge badge-alert">20 lugares</div>
+          <div><span class="event-card-link">Más info →</span></div>
+        </a>
+        <a href="#" class="event-card">
+          <div class="event-card-date">22 MAY</div>
+          <div class="event-card-type">// Hackathon</div>
+          <h4 class="event-card-title">Hackathon Vibe Coding</h4>
+          <p class="event-card-desc">De idea a producto funcional con IA en una tarde.</p>
+          <div class="badge badge-success">Abierto</div>
+          <div><span class="event-card-link">Más info →</span></div>
+        </a>
+        <a href="#" class="event-card">
+          <div class="event-card-date">5 JUN</div>
+          <div class="event-card-type">// Workshop</div>
+          <h4 class="event-card-title">Hackathon Automatizaciones</h4>
+          <p class="event-card-desc">Automatiza tu workflow con Make, n8n y APIs.</p>
+          <div class="badge badge-success">Abierto</div>
+          <div><span class="event-card-link">Más info →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEOS ===== -->
+  <section id="videos" class="section">
+    <div class="container">
+      <div class="section-eyebrow">// 04 — Videos recientes</div>
+      <p class="section-intro">
+        Suscríbete al canal → <a href="https://www.youtube.com/@angelrocha_ia" target="_blank" rel="noopener noreferrer" class="channel-link">@angelrocha_ia</a>
+      </p>
+
+      <a href="#" class="video-featured" target="_blank" rel="noopener noreferrer">
+        <div class="video-thumb">
+          <img src="https://placehold.co/1280x720/141414/A3A3A3?text=Video+Destacado" alt="Video destacado">
+          <div class="play-btn">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </div>
+          <div class="video-duration">12:34</div>
+        </div>
+        <h3>El framework P.A.S.O. explicado en 12 minutos</h3>
+        <div class="video-meta">Hace 3 días · 8.4K vistas</div>
+      </a>
+
+      <div class="videos-grid">
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+1" alt="Video 1">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">8:42</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">5 prompts que uso todos los días</h4>
+            <div class="video-card-meta">Hace 1 semana · 12K vistas</div>
+          </div>
+        </a>
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+2" alt="Video 2">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">14:20</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">Por qué tus prompts no funcionan</h4>
+            <div class="video-card-meta">Hace 2 semanas · 9.1K vistas</div>
+          </div>
+        </a>
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+3" alt="Video 3">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">22:15</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">Make + Claude: tu primera automatización</h4>
+            <div class="video-card-meta">Hace 3 semanas · 6.7K vistas</div>
+          </div>
+        </a>
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+4" alt="Video 4">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">11:05</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">El error #1 al aprender IA en 2026</h4>
+            <div class="video-card-meta">Hace 1 mes · 15K vistas</div>
+          </div>
+        </a>
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+5" alt="Video 5">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">18:33</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">Context engineering: la nueva habilidad</h4>
+            <div class="video-card-meta">Hace 1 mes · 7.3K vistas</div>
+          </div>
+        </a>
+        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
+          <div class="video-thumb">
+            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+6" alt="Video 6">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+            <div class="video-duration">25:10</div>
+          </div>
+          <div class="video-card-info">
+            <h4 class="video-card-title">Cómo cobrar por proyectos de IA</h4>
+            <div class="video-card-meta">Hace 2 meses · 10K vistas</div>
+          </div>
+        </a>
+      </div>
+
+      <a href="https://www.youtube.com/@angelrocha_ia" target="_blank" rel="noopener noreferrer" class="videos-cta">
+        Ver todos los videos en youtube →
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTOS ===== -->
+  <section id="productos" class="section">
+    <div class="container">
+      <div class="section-eyebrow">// 05 — Trabaja conmigo</div>
+      <div class="products-grid">
+        <div class="product-card product-lite">
+          <span class="product-badge badge-free">Gratis</span>
+          <h3 class="product-title">Sistema Operativo IA LITE</h3>
+          <p class="product-desc">Tu primera entrada al sistema. Prompts probados, plantillas y un roadmap de 7 días.</p>
+          <ul class="product-features">
+            <li>Prompts listos para copiar</li>
+            <li>Plantilla P.A.S.O.</li>
+            <li>Roadmap 7 días</li>
+          </ul>
+          <a href="#" class="product-cta">Descargar gratis →</a>
+        </div>
+
+        <div class="product-card product-full">
+          <span class="product-badge badge-popular">Más popular</span>
+          <h3 class="product-title">Sistema Operativo IA FULL</h3>
+          <p class="product-desc">El sistema completo. Entrenamiento avanzado, comunidad privada y actualizaciones mensuales.</p>
+          <ul class="product-features">
+            <li>Todo lo de LITE</li>
+            <li>Módulos avanzados P.A.S.O.</li>
+            <li>Comunidad privada</li>
+            <li>Automatizaciones exportables</li>
+            <li>Soporte por 90 días</li>
+          </ul>
+          <a href="#" class="product-cta">Quiero el sistema →</a>
+        </div>
+
+        <div class="product-card product-1on1">
+          <span class="product-badge badge-highticket">High-ticket</span>
+          <h3 class="product-title">Sesión privada 1:1</h3>
+          <p class="product-desc">Para empresas y consultores serios. Aplicación requerida.</p>
+          <ul class="product-features">
+            <li>90 minutos contigo</li>
+            <li>Diagnóstico de tu stack actual</li>
+            <li>Roadmap de implementación</li>
+          </ul>
+          <a href="#" class="product-cta">Agendar llamada →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="cta-final">
+    <h2>¿Listo para<br>dejar de<br>improvisar?</h2>
+    <p>El próximo webinar es esta semana. Es gratis. Y va a cambiar cómo usas IA.</p>
+    <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=cta-final" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
+      Reservar mi lugar ahora →
+    </a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Angel Rocha <span style="color: var(--primary);">•</span></div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#productos">Productos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Redes</h4>
+          <ul>
+            <li><a href="https://www.youtube.com/@angelrocha_ia" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+              YouTube
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              Instagram
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.7 4-7.4 7-4.2 1.1-.1 2.2.3 3 .8z"/></svg>
+              X (Twitter)
+            </a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <div class="footer-contact">hola@iaacademy.mx</div>
+          <div class="footer-contact-muted">IA Academy · México · LatAm</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Angel Rocha · IA Academy</div>
+        <div class="mono">Hecho con estrategia, no con improvisación.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Nav border on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    navToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileMenuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    document.querySelectorAll('[data-close-menu]').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Close mobile menu on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        mobileMenu.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
