@@ -3,1473 +3,227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Angel Rocha — IA & Automatización | Strategy First</title>
+  <title>Angel Rocha — Formación y Consultoría en IA</title>
   <meta name="description" content="Formación y consultoría en IA. Estrategia primero. Dirección antes que herramientas. Aprende a usar IA como un activo, no como un truco.">
   <meta name="author" content="Angel Rocha">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/ar-icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Angel Rocha — IA & Automatización">
+  <meta property="og:title" content="Angel Rocha — Formación y Consultoría en IA">
   <meta property="og:description" content="Estrategia primero. Dirección antes que herramientas. Aprende a usar IA como un activo, no como un truco.">
   <meta property="og:url" content="https://angelrocha.com">
   <meta property="og:image" content="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp">
-
-  <!-- Fonts -->
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem('ar-theme');
+        var theme = stored || 'auto';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.add(isDark ? 'is-dark' : 'is-light');
+      } catch(e) {
+        document.documentElement.dataset.theme = 'auto';
+        document.documentElement.classList.add('is-light');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://content.app-sources.com" crossorigin>
   <link rel="preload" as="image" href="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp" type="image/webp" fetchpriority="high">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
-
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <style>
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-main: #0A0A0A;
-      --bg-card: #141414;
-      --bg-elevated: #1F1F1F;
-      --border: #262626;
-      --primary: #E5FF00;
-      --text-primary: #FFFFFF;
-      --text-muted: #B5B5B5;
-      --alert: #FF3B30;
-      --success: #00E676;
-
-      --font-display: 'Anton', sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg-main);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font: inherit;
-      color: inherit;
-    }
-
-    /* ===== UTILITIES ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    .section {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-    .section,
-    .footer,
-    .cta-final {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 900px;
-    }
-
-    .section-eyebrow {
-      font-family: var(--font-mono);
-      color: var(--primary);
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .section-intro {
-      color: var(--text-muted);
-      font-size: 18px;
-      margin-bottom: 32px;
-    }
-
-    /* ===== NAV ===== */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg-main);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-    .nav.scrolled {
-      border-bottom-color: var(--primary);
-    }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 22px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .nav-logo .dot { color: var(--primary); }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-    }
-    .nav-link {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover { color: var(--primary); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: var(--font-display);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.15s ease;
-      cursor: pointer;
-      border: 2px solid transparent;
-      white-space: nowrap;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #000;
-      padding: 12px 20px;
-      font-size: 14px;
-    }
-    .btn-primary:hover {
-      background: #fff;
-    }
-    .btn-pulse {
-      animation: button-pulse 1.8s ease-in-out infinite;
-    }
-    .btn-pulse:hover {
-      animation-play-state: paused;
-    }
-    @keyframes button-pulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(229, 255, 0, 0.55);
-      }
-      50% {
-        transform: scale(1.04);
-        box-shadow: 0 0 0 10px rgba(229, 255, 0, 0);
-      }
-    }
-    .btn-primary-lg {
-      padding: 18px 32px;
-      font-size: 18px;
-    }
-    .btn-primary-xl {
-      padding: 22px 40px;
-      font-size: 20px;
-    }
-    .btn-outline {
-      border-color: var(--primary);
-      color: var(--primary);
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-    .btn-outline:hover {
-      background: var(--primary);
-      color: #000;
-    }
-    .btn-dark {
-      background: #000;
-      color: var(--primary);
-      padding: 22px 40px;
-      font-size: 20px;
-    }
-    .btn-dark:hover {
-      background: var(--bg-main);
-    }
-
-    .nav-toggle {
-      display: none;
-      color: #fff;
-      padding: 8px;
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 60;
-      background: var(--bg-main);
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 24px;
-      gap: 24px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      color: #fff;
-      padding: 8px;
-    }
-    .mobile-menu-link {
-      font-family: var(--font-display);
-      font-size: 48px;
-      text-transform: uppercase;
-      transition: color 0.15s ease;
-    }
-    .mobile-menu-link:hover { color: var(--primary); }
-
-    /* ===== HERO ===== */
-    .hero {
-      padding: 80px 32px 60px;
-    }
-    .hero-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 160px);
-      line-height: 0.9;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
-    }
-    .strike {
-      position: relative;
-      display: inline-block;
-      color: var(--primary);
-    }
-    .strike::after {
-      content: '';
-      position: absolute;
-      left: -4px;
-      right: -4px;
-      top: 50%;
-      height: 6px;
-      background: var(--primary);
-      transform: rotate(-3deg) translateY(-50%);
-    }
-    .hero-sub {
-      font-size: 18px;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .link-secondary {
-      color: #fff;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      font-weight: 500;
-    }
-    .link-secondary:hover { color: var(--primary); }
-    .hero-photo {
-      position: relative;
-    }
-    .hero-photo img {
-      filter: grayscale(100%) contrast(1.15);
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-    }
-    .sticker {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 130px;
-      height: 130px;
-      background: var(--primary);
-      color: #000;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 15px;
-      text-align: center;
-      line-height: 1.05;
-      text-transform: uppercase;
-      animation: spin-slow 12s linear infinite;
-      z-index: 2;
-    }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* ===== MARQUEE ===== */
-    .marquee {
-      background: var(--primary);
-      color: #000;
-      overflow: hidden;
-      padding: 16px 0;
-      border-top: 2px solid #000;
-      border-bottom: 2px solid #000;
-    }
-    .marquee-track {
-      display: flex;
-      white-space: nowrap;
-      animation: marquee 28s linear infinite;
-      width: max-content;
-      font-family: var(--font-display);
-      font-size: 22px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .marquee-track span { padding: 0 28px; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ===== SOBRE ===== */
-    .about-title {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 6vw, 80px);
-      text-transform: uppercase;
-      line-height: 0.95;
-      margin-bottom: 32px;
-    }
-    .about-text {
-      max-width: 720px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .about-text p {
-      color: var(--text-muted);
-      font-size: 18px;
-      line-height: 1.7;
-    }
-    .signature {
-      margin-top: 16px;
-    }
-
-    /* ===== STATS ===== */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 32px 24px;
-      transition: all 0.2s ease;
-    }
-    .stat-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-    }
-    .stat-num {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: var(--primary);
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: 1;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    .stat-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      line-height: 1.4;
-    }
-
-    /* ===== EVENTOS ===== */
-    .event-featured {
-      background: var(--bg-card);
-      border: 2px solid var(--primary);
-      padding: 32px;
-      margin-bottom: 40px;
-    }
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      color: var(--alert);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--alert);
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-    .event-date {
-      font-family: var(--font-display);
-      color: var(--primary);
-      font-size: clamp(24px, 3vw, 36px);
-      margin-bottom: 8px;
-    }
-    .event-title {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4.5vw, 56px);
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .event-desc {
-      color: var(--text-muted);
-      font-size: 16px;
-      max-width: 640px;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-    .event-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    .event-meta span {
-      background: var(--bg-main);
-      padding: 6px 12px;
-      font-size: 13px;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .event-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 24px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    .event-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-    }
-    .event-card-date {
-      font-family: var(--font-mono);
-      color: var(--primary);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-    .event-card-type {
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-    }
-    .event-card-title {
-      font-family: var(--font-display);
-      font-size: 22px;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-    .event-card-desc {
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    .badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 4px 8px;
-      margin-bottom: 16px;
-    }
-    .badge-alert {
-      background: rgba(255, 59, 48, 0.1);
-      color: var(--alert);
-    }
-    .badge-success {
-      background: rgba(0, 230, 118, 0.1);
-      color: var(--success);
-    }
-    .event-card-link {
-      color: var(--primary);
-      font-size: 14px;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    /* ===== VIDEOS ===== */
-    .channel-link {
-      color: var(--primary);
-    }
-    .channel-link:hover { text-decoration: underline; }
-
-    .video-featured {
-      cursor: pointer;
-      margin-bottom: 48px;
-      display: block;
-    }
-    .video-thumb {
-      position: relative;
-      aspect-ratio: 16/9;
-      background: #2a2a2a;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .video-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    .video-featured:hover .video-thumb img { transform: scale(1.04); }
-    .play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s ease;
-      z-index: 2;
-    }
-    .video-featured:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); }
-    .play-btn svg {
-      color: #000;
-      margin-left: 4px;
-    }
-    .video-duration {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0,0,0,0.85);
-      color: #fff;
-      padding: 4px 8px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-    .video-featured h3 {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 36px);
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .video-meta {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 32px;
-    }
-    .video-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      display: block;
-    }
-    .video-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-    }
-    .video-card .video-thumb { margin-bottom: 0; }
-    .video-card .play-btn {
-      width: 44px;
-      height: 44px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    .video-card .play-btn svg { width: 18px; height: 18px; margin-left: 2px; }
-    .video-card:hover .play-btn { opacity: 1; }
-    .video-card .video-duration {
-      bottom: 8px;
-      right: 8px;
-      font-size: 10px;
-      padding: 3px 6px;
-    }
-    .video-card-info {
-      padding: 16px;
-    }
-    .video-card-title {
-      font-family: var(--font-display);
-      font-size: 16px;
-      text-transform: uppercase;
-      line-height: 1.2;
-      margin-bottom: 6px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .video-card-meta {
-      color: var(--text-muted);
-      font-size: 12px;
-    }
-    .videos-cta {
-      font-family: var(--font-display);
-      color: var(--primary);
-      font-size: 22px;
-      text-transform: uppercase;
-      text-decoration: underline;
-      text-underline-offset: 6px;
-      transition: color 0.15s ease;
-    }
-    .videos-cta:hover { color: #fff; }
-
-    /* ===== PRODUCTOS ===== */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .product-card {
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.2s ease;
-    }
-    .product-card:hover { transform: translateY(-4px); }
-    .product-lite {
-      background: var(--bg-card);
-      border: 1px solid var(--primary);
-    }
-    .product-full {
-      background: var(--primary);
-      color: #000;
-      border: 1px solid var(--primary);
-    }
-    .product-1on1 {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-    }
-    .product-badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 4px 8px;
-      margin-bottom: 20px;
-      width: fit-content;
-    }
-    .badge-free {
-      background: rgba(0, 230, 118, 0.15);
-      color: var(--success);
-    }
-    .badge-popular {
-      background: #000;
-      color: var(--primary);
-    }
-    .badge-highticket {
-      background: rgba(229, 255, 0, 0.1);
-      color: var(--primary);
-    }
-    .product-title {
-      font-family: var(--font-display);
-      font-size: 28px;
-      text-transform: uppercase;
-      line-height: 1.05;
-      margin-bottom: 12px;
-    }
-    .product-full .product-title { color: #000; }
-    .product-desc {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-    .product-full .product-desc { color: rgba(0,0,0,0.7); }
-    .product-features {
-      list-style: none;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .product-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    .product-full .product-features li { color: rgba(0,0,0,0.85); }
-    .product-features li::before {
-      content: '✓';
-      color: var(--primary);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .product-full .product-features li::before { color: #000; }
-    .product-cta {
-      font-family: var(--font-display);
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      width: fit-content;
-      transition: all 0.15s ease;
-      padding: 8px 0;
-    }
-    .product-lite .product-cta {
-      color: var(--primary);
-    }
-    .product-lite .product-cta:hover { color: #fff; }
-    .product-full .product-cta {
-      background: #000;
-      color: var(--primary);
-      padding: 12px 20px;
-    }
-    .product-full .product-cta:hover { background: var(--bg-main); }
-    .product-1on1 .product-cta {
-      border: 1px solid var(--primary);
-      color: var(--primary);
-      padding: 12px 20px;
-    }
-    .product-1on1 .product-cta:hover {
-      background: var(--primary);
-      color: #000;
-    }
-
-    /* ===== CTA FINAL ===== */
-    .cta-final {
-      background: var(--primary);
-      color: #000;
-      padding: 100px 32px;
-      text-align: center;
-    }
-    .cta-final h2 {
-      font-family: var(--font-display);
-      font-size: clamp(56px, 10vw, 140px);
-      text-transform: uppercase;
-      line-height: 0.9;
-      margin-bottom: 24px;
-    }
-    .cta-final p {
-      font-size: 20px;
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.5;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      background: #000;
-      border-top: 1px solid var(--border);
-      padding: 60px 32px 32px;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 28px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 32px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-    .footer-col h4 {
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-      font-weight: normal;
-    }
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .footer-col a {
-      font-size: 14px;
-      transition: color 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .footer-col a:hover { color: var(--primary); }
-    .footer-contact {
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-    .footer-contact-muted {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .footer-bottom > div {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .footer-bottom .mono {
-      font-family: var(--font-mono);
-    }
-
-    /* ===== MODAL ===== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      animation: fadeIn 0.2s ease;
-    }
-    .modal-overlay.open { display: flex; }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .modal {
-      background: var(--bg-card);
-      border: 2px solid var(--primary);
-      padding: 32px;
-      max-width: 480px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-    }
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 24px;
-      text-transform: uppercase;
-    }
-    .modal-close {
-      color: #fff;
-      padding: 4px;
-      transition: color 0.15s ease;
-    }
-    .modal-close:hover { color: var(--primary); }
-    .modal-sub {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-    .modal form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .modal label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #fff;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .modal input {
-      width: 100%;
-      background: var(--bg-main);
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 12px;
-      font-family: inherit;
-      font-size: 14px;
-      transition: border-color 0.15s ease;
-    }
-    .modal input:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-    .modal-btn {
-      width: 100%;
-      background: var(--primary);
-      color: #000;
-      padding: 16px;
-      font-family: var(--font-display);
-      font-size: 16px;
-      text-transform: uppercase;
-      transition: background 0.15s ease;
-    }
-    .modal-btn:hover { background: #fff; }
-
-    /* ===== ICONS ===== */
-    .icon { display: inline-block; vertical-align: middle; }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-photo {
-        max-width: 400px;
-        order: -1;
-      }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .events-grid { grid-template-columns: repeat(2, 1fr); }
-      .videos-grid { grid-template-columns: repeat(2, 1fr); }
-      .products-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; }
-      .section { padding: 60px 0; }
-      .hero { padding: 40px 20px; }
-      .nav-inner { padding: 12px 20px; }
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .nav .btn-primary { padding: 10px 16px; font-size: 12px; }
-      .hero-title { font-size: clamp(40px, 12vw, 64px); }
-      .hero-photo {
-        max-width: 280px;
-        margin: 0 auto;
-      }
-      .sticker {
-        width: 95px;
-        height: 95px;
-        font-size: 13px;
-        top: -10px;
-        right: -10px;
-      }
-      .hero-ctas { flex-direction: column; align-items: stretch; }
-      .hero-ctas .btn { width: 100%; }
-      .marquee-track { font-size: 16px; }
-      .marquee-track span { padding: 0 16px; }
-      .events-grid { grid-template-columns: 1fr; }
-      .videos-grid { grid-template-columns: 1fr; gap: 16px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .cta-final { padding: 60px 20px; }
-      .cta-final h2 { font-size: clamp(40px, 12vw, 80px); }
-    }
-
-    @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
-      .stat-num { font-size: 56px; }
-      .event-featured { padding: 24px; }
-      .event-title { font-size: 32px; }
-    }
-
-    /* ===== ACCESSIBILITY ===== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      html { scroll-behavior: auto; }
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f8f6f1;--card:#fff;--text:#0e1428;--muted:#5a6580;--border:#e8e2d5;
+      --accent:#1e3a5f;--accent-2:#d4a574;--success:#4a8b6f;
+      --display:'Fraunces',Georgia,serif;--body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    html.is-dark{--bg:#0e1428;--card:#1a2940;--text:#f8f6f1;--muted:#b5c0d5;--border:#2a3955;--accent:#d4a574}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+    .container{max-width:1200px;margin:0 auto;padding:0 32px}.section{padding:100px 0}.section+.section{border-top:1px solid var(--border)}
+    .section-dark{background:#0e1428;color:#f8f6f1}.section-dark .muted,.section-dark .section-intro{color:#b5c0d5}.section-dark .eyebrow,.section-dark .link-arrow{color:var(--accent-2)}
+    .eyebrow{margin-bottom:24px;color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.section-intro{max-width:640px;margin-bottom:48px;color:var(--muted);font-size:17px;line-height:1.75}
+    .nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent}
+    .nav.scrolled{border-bottom-color:var(--border)}.nav-inner{max-width:1200px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo,.footer-logo{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.01em}.dot{color:var(--accent)}
+    .nav-links{display:flex;gap:28px}.nav-link{color:var(--muted);font-size:14px;font-weight:500}.nav-link:hover{color:var(--text)}
+    .nav-actions{display:flex;align-items:center;gap:12px}.nav-toggle{display:none;padding:8px}.theme-toggle{width:40px;height:40px;border:1px solid var(--border);display:grid;place-items:center;position:relative}.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .theme-toggle svg{width:18px;height:18px;display:none}html[data-theme=light] .icon-sun,html[data-theme=dark] .icon-moon,html[data-theme=auto] .icon-system{display:block}
+    .theme-tip{position:absolute;top:calc(100% + 8px);right:0;background:var(--text);color:var(--bg);padding:6px 10px;font-size:11px;white-space:nowrap;opacity:0;pointer-events:none}.theme-toggle:hover .theme-tip{opacity:1}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 24px;background:var(--accent);color:var(--bg);font-weight:600;font-size:14px;white-space:nowrap;transition:.2s ease}.btn:hover{opacity:.86}.btn-lg{padding:18px 34px;font-size:16px}.btn-warm{background:var(--accent-2);color:#0e1428}
+    .link-secondary{font-weight:600;border-bottom:1px solid currentColor;padding-bottom:3px}.link-arrow{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-weight:600}.link-arrow:hover{gap:10px}
+    .mobile-menu{display:none;position:fixed;inset:0;z-index:60;background:var(--bg);padding:32px;align-items:flex-start;justify-content:center;flex-direction:column;gap:28px}.mobile-menu.open{display:flex}.mobile-menu-link{font-family:var(--display);font-size:40px;font-weight:500}.mobile-menu-close{position:absolute;top:20px;right:20px}
+    .hero{padding:82px 32px 105px}.hero-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:center}.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:30px;color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.hero-eyebrow::before{content:"";width:32px;height:1px;background:var(--accent)}
+    .hero-title{margin-bottom:30px;font-family:var(--display);font-size:clamp(44px,6.5vw,88px);font-weight:500;line-height:1.02;letter-spacing:-.025em}.hero-title em{font-style:italic;font-weight:400;color:var(--accent)}.hero-sub{max-width:540px;margin-bottom:40px;color:var(--muted);font-size:19px;line-height:1.65}.hero-ctas{display:flex;align-items:center;gap:28px;flex-wrap:wrap}.hero-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:contrast(1.05) brightness(.95)}
+    .about-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px}.section-title{font-family:var(--display);font-weight:500;font-size:clamp(36px,4.5vw,58px);line-height:1.05;letter-spacing:-.02em}.section-title em{font-style:italic;font-weight:400;color:var(--accent)}.about-text{display:flex;flex-direction:column;gap:22px}.about-text p{color:var(--muted);font-size:17px;line-height:1.75}.about-text strong{color:var(--text)}.signature{margin-top:12px;font-family:var(--display);font-style:italic;font-size:18px}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;border-block:1px solid var(--border);padding:60px 0}.stat-card{padding:0 16px;border-right:1px solid var(--border)}.stat-card:last-child{border-right:0}.stat-num{margin-bottom:16px;color:var(--accent);font-family:var(--display);font-size:clamp(44px,5.5vw,72px);font-weight:500;line-height:1;letter-spacing:-.03em}.stat-label{max-width:210px;color:var(--muted);font-size:13px;line-height:1.5}
+    .event-featured{display:grid;grid-template-columns:auto 1fr auto;gap:46px;align-items:center;margin-bottom:48px;padding:48px;background:#1a2940;border-left:3px solid var(--accent-2)}.live-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--accent-2);font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase}.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2)}.event-date-block{text-align:center;padding-right:40px;border-right:1px solid #2a3955}.event-date-day{font-family:var(--display);font-size:56px;line-height:1}.event-date-month{margin-top:6px;color:#b5c0d5;font-size:13px;letter-spacing:.15em;text-transform:uppercase}.event-time{margin-top:12px;color:var(--accent-2);font-size:13px}.event-title,.video-featured h3{margin-bottom:16px;font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:500;line-height:1.1;letter-spacing:-.02em}.event-title em{font-style:italic;font-weight:400;color:var(--accent-2)}.event-desc{max-width:560px;margin-bottom:20px;color:#b5c0d5;font-size:16px;line-height:1.7}.event-meta{display:flex;gap:24px;flex-wrap:wrap;color:#b5c0d5;font-size:13px}
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a3955;border:1px solid #2a3955}.event-card{display:block;padding:32px;background:#0e1428}.event-card:hover{background:#1a2940}.event-card-meta{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px}.event-card-date{color:var(--accent-2);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase}.event-card-tag{color:#b5c0d5;font-size:11px;letter-spacing:.12em;text-transform:uppercase}.event-card-title{margin-bottom:12px;font-family:var(--display);font-size:22px;font-weight:500;line-height:1.2}.event-card-desc{margin-bottom:24px;color:#b5c0d5;font-size:14px;line-height:1.6}
+    .channel-link{color:var(--accent-2);border-bottom:1px solid transparent}.channel-link:hover{border-bottom-color:var(--accent-2)}.video-featured{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;margin-bottom:64px}.video-thumb{position:relative;aspect-ratio:16/9;background:#1a2940;overflow:hidden}.video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.video-featured:hover .video-thumb img,.video-card:hover .video-thumb img{transform:scale(1.02)}.play-btn{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(248,246,241,.95);color:#0e1428}.play-btn svg{margin-left:3px}.video-duration{position:absolute;right:12px;bottom:12px;padding:4px 8px;background:rgba(14,20,40,.86);font-size:12px}.video-meta,.video-card-meta{color:#b5c0d5;font-size:14px}.videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px}.video-card{display:block}.video-card .play-btn{width:48px;height:48px;opacity:0}.video-card:hover .play-btn{opacity:1}.video-card-info{padding-top:16px}.video-card-title{margin-bottom:6px;font-family:var(--display);font-size:18px;font-weight:500;line-height:1.3}
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}.product-card{display:flex;flex-direction:column;padding:40px;background:var(--card);border:1px solid var(--border)}.product-card:hover{border-color:var(--accent)}.product-full{background:var(--accent);color:var(--bg);border-color:var(--accent)}.product-badge{width:max-content;margin-bottom:24px;padding:4px 10px;border:1px solid currentColor;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.product-lite .product-badge{color:var(--success)}.product-full .product-badge{color:var(--accent-2)}.product-title{margin-bottom:14px;font-family:var(--display);font-size:26px;font-weight:500;line-height:1.15}.product-desc{margin-bottom:28px;color:var(--muted);font-size:15px;line-height:1.65}.product-full .product-desc{color:rgba(248,246,241,.8)}.product-features{display:flex;flex:1;flex-direction:column;gap:12px;margin-bottom:32px;padding-top:24px;border-top:1px solid var(--border);list-style:none}.product-full .product-features{border-top-color:rgba(248,246,241,.22)}.product-features li{display:flex;gap:12px;font-size:14px;line-height:1.5}.product-features li::before{content:"";width:14px;height:1px;margin-top:11px;flex:0 0 auto;background:currentColor}.product-cta{display:inline-flex;align-items:center;gap:8px;width:max-content;padding-bottom:4px;border-bottom:1px solid currentColor;font-weight:600}
+    .cta-final{padding:140px 32px;text-align:center;background:#0e1428;color:#f8f6f1}.cta-final h2{max-width:850px;margin:0 auto 28px;font-family:var(--display);font-size:clamp(40px,6vw,88px);font-weight:500;line-height:1.05;letter-spacing:-.025em}.cta-final h2 em{font-style:italic;font-weight:400;color:var(--accent-2)}.cta-final p{max-width:560px;margin:0 auto 48px;color:#b5c0d5;font-size:18px;line-height:1.65}
+    .footer{padding:80px 32px 40px;background:#0e1428;color:#f8f6f1;border-top:1px solid #2a3955}.footer-inner{max-width:1200px;margin:0 auto}.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid #2a3955}.footer-tag,.footer-contact-muted{color:#b5c0d5;font-size:14px;line-height:1.6}.footer-col h4{margin-bottom:20px;color:#b5c0d5;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.footer-col ul{display:flex;flex-direction:column;gap:12px;list-style:none}.footer-col a{display:inline-flex;align-items:center;gap:8px;font-size:14px}.footer-col a:hover{color:var(--accent-2)}.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#b5c0d5;font-size:12px}.icon{display:inline-block;vertical-align:middle}
+    @media(max-width:1024px){.hero-grid,.about-grid,.video-featured{grid-template-columns:1fr}.hero-photo{max-width:420px;order:-1}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-card:nth-child(2){border-right:0}.events-grid,.products-grid{grid-template-columns:1fr}.videos-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:repeat(2,1fr)}.footer-brand{grid-column:1/-1}.event-featured{grid-template-columns:auto 1fr}.event-featured .btn{grid-column:1/-1;justify-self:start}}
+    @media(max-width:768px){.container{padding:0 24px}.section{padding:72px 0}.hero{padding:48px 24px 80px}.nav-inner{padding:16px 24px}.nav-links{display:none}.nav-toggle{display:flex}.nav .btn{padding:10px 16px;font-size:13px}.hero-photo{max-width:320px;margin:0 auto}.hero-ctas{align-items:stretch;flex-direction:column}.hero-ctas .btn{width:100%}.hero-ctas .link-secondary{text-align:center}.stats-grid,.videos-grid{grid-template-columns:1fr}.stat-card{border-right:0;border-bottom:1px solid var(--border);padding-bottom:32px}.stat-card:last-child{border-bottom:0}.event-featured{display:block;padding:32px}.event-date-block{text-align:left;margin-bottom:24px;padding:0 0 24px;border-right:0;border-bottom:1px solid #2a3955}.event-date-day,.event-date-month,.event-time{display:inline-block}.event-date-month,.event-time{margin:0 0 0 12px}.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}.cta-final{padding:82px 24px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}html{scroll-behavior:auto}}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   </style>
 </head>
 <body>
-
-  <!-- ===== NAV ===== -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Angel Rocha <span class="dot">•</span></a>
-
+      <a href="#hero" class="nav-logo">Angel Rocha<span class="dot">.</span></a>
       <div class="nav-links">
         <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#numeros" class="nav-link">Trayectoria</a>
         <a href="#eventos" class="nav-link">Eventos</a>
         <a href="#videos" class="nav-link">Videos</a>
-        <a href="#productos" class="nav-link">Productos</a>
+        <a href="#productos" class="nav-link">Trabajar conmigo</a>
       </div>
-
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=nav" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pulse">
-          Regístrate al webinar
-        </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="6" y2="6"/>
-            <line x1="4" x2="20" y1="12" y2="12"/>
-            <line x1="4" x2="20" y1="18" y2="18"/>
-          </svg>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" type="button">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2m-1.93-7.07-1.41 1.41M6.34 17.66l-1.41 1.41m0-14.14 1.41 1.41m11.32 11.32 1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <svg class="icon-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          <span class="theme-tip" id="themeTooltip">Auto</span>
         </button>
+        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=nav" target="_blank" rel="noopener noreferrer" class="btn">Próximo webinar</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/></svg></button>
       </div>
     </div>
   </nav>
-
-  <!-- ===== MOBILE MENU ===== -->
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
-      </svg>
-    </button>
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <a href="#sobre" class="mobile-menu-link" data-close-menu>Sobre</a>
+    <a href="#numeros" class="mobile-menu-link" data-close-menu>Trayectoria</a>
     <a href="#eventos" class="mobile-menu-link" data-close-menu>Eventos</a>
     <a href="#videos" class="mobile-menu-link" data-close-menu>Videos</a>
-    <a href="#productos" class="mobile-menu-link" data-close-menu>Productos</a>
+    <a href="#productos" class="mobile-menu-link" data-close-menu>Trabajar conmigo</a>
   </div>
-
-  <!-- ===== HERO ===== -->
   <section id="hero" class="hero">
     <div class="hero-grid">
       <div class="hero-text">
-        <div class="section-eyebrow">// Formación y Consultoría en IA</div>
-        <h1 class="hero-title">
-          Deja de<br>
-          <span class="strike">improvisar</span><br>
-          con la IA.
-        </h1>
-        <p class="hero-sub">
-          Estrategia primero. Dirección antes que herramientas.
-          Aprende a usar IA como un activo, no como un truco.
-        </p>
+        <div class="hero-eyebrow">Formación &amp; Consultoría en IA</div>
+        <h1 class="hero-title">Deja de improvisar<br>con la IA.<br><em>Empieza a dirigirla.</em></h1>
+        <p class="hero-sub">Estrategia primero. Dirección antes que herramientas. Aprende a usar IA como un activo, no como un truco.</p>
         <div class="hero-ctas">
-          <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=hero" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-lg">
-            Regístrate al webinar gratis →
-          </a>
-          <a href="#videos" class="link-secondary">
-            Ver últimos videos ↓
-          </a>
+          <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=hero" target="_blank" rel="noopener noreferrer" class="btn btn-lg">Regístrate al webinar gratis →</a>
+          <a href="#videos" class="link-secondary">Ver últimos videos</a>
         </div>
       </div>
       <div class="hero-photo">
         <img src="https://content.app-sources.com/s/30143914697671891/uploads/AR/tmp5ay1ebbu-7316135.webp" alt="Angel Rocha — Formación y consultoría en IA" width="600" height="750" fetchpriority="high" loading="eager" decoding="async">
-        <div class="sticker">MASTER<br>EN IA</div>
       </div>
     </div>
   </section>
-
-  <!-- ===== MARQUEE ===== -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Strategy First</span><span>•</span>
-      <span>+1200 Automatizaciones</span><span>•</span>
-      <span>Master en IA</span><span>•</span>
-      <span>LatAm</span><span>•</span>
-      <span>IA Academy</span><span>•</span>
-      <span>Strategy First</span><span>•</span>
-      <span>+1200 Automatizaciones</span><span>•</span>
-      <span>Master en IA</span><span>•</span>
-      <span>LatAm</span><span>•</span>
-      <span>IA Academy</span><span>•</span>
-    </div>
-  </div>
-
-  <!-- ===== SOBRE ===== -->
   <section id="sobre" class="section">
     <div class="container">
-      <div class="section-eyebrow">// 01 — Sobre</div>
-      <h2 class="about-title">No soy otro<br>gurú de IA.</h2>
-      <div class="about-text">
-        <p>Cuando empecé con IA hice lo que hace todo el mundo: probé todo sin orden, esperando que algo funcionara. Funcionaba a ratos. Pero no cambiaba nada de fondo - de hecho, perdía más tiempo en intentos frustrados que en trabajo real.</p>
-        <p>Lo que cambió todo fue dejar de coleccionar herramientas y empezar a construir un sistema.</p>
-        <p>+20 años emprendiendo en industrias distintas me enseñaron una cosa: entender el proceso antes de tocar la herramienta. Cuando la IA llegó, no la vi como moda. La vi como el copiloto más poderoso que había tenido - si sabías cómo usarlo.</p>
-        <p>Hoy llevo +1200 automatizaciones implementadas, +23 equipos entrenados y un Máster en IA. Pero el número que importa es este: los equipos con los que trabajo recuperan hasta 7 horas semanales de tareas repetitivas.</p>
-        <p>No son números de presentación. Son resultados de la trinchera.</p>
-        <p>Si quieres tutoriales, hay miles gratis. Si quieres un sistema que funcione en tu trabajo real, sigue leyendo.</p>
-        <div class="signature">
-          <svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M10 30C30 10 50 35 70 20C90 5 110 25 130 15C150 5 170 20 190 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <text x="10" y="38" fill="#A3A3A3" font-family="Inter, sans-serif" font-size="12">— Angel Rocha</text>
-          </svg>
+      <div class="eyebrow">01 — Sobre</div>
+      <div class="about-grid">
+        <h2 class="section-title">No soy otro<br><em>gurú de IA.</em></h2>
+        <div class="about-text">
+          <p>Cuando empecé con IA hice lo que hace todo el mundo: probé todo sin orden, esperando que algo funcionara. Funcionaba a ratos. Pero no cambiaba nada de fondo — de hecho, perdía más tiempo en intentos frustrados que en trabajo real.</p>
+          <p><strong>Lo que cambió todo fue dejar de coleccionar herramientas y empezar a construir un sistema.</strong></p>
+          <p>+20 años emprendiendo en industrias distintas me enseñaron una cosa: entender el proceso antes de tocar la herramienta. Cuando la IA llegó, no la vi como moda. La vi como el copiloto más poderoso que había tenido — si sabías cómo usarlo.</p>
+          <p>Hoy llevo +1200 automatizaciones implementadas, +23 equipos entrenados y un Máster en IA. Pero el número que importa es este: <strong>los equipos con los que trabajo recuperan hasta 7 horas semanales de tareas repetitivas.</strong></p>
+          <p>No son números de presentación. Son resultados de la trinchera.</p>
+          <p>Si quieres tutoriales, hay miles gratis. Si quieres un sistema que funcione en tu trabajo real, sigue leyendo.</p>
+          <div class="signature">— Angel Rocha</div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ===== STATS ===== -->
   <section id="numeros" class="section">
     <div class="container">
-      <div class="section-eyebrow">// 02 — Los números no mienten</div>
+      <div class="eyebrow">02 — Trayectoria</div>
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-num">+1200</div>
-          <div class="stat-label">Automatizaciones implementadas</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">13+</div>
-          <div class="stat-label">Años de consultoría</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">Master</div>
-          <div class="stat-label">En Inteligencia Artificial</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">4+</div>
-          <div class="stat-label">Países en LatAm</div>
-        </div>
+        <div class="stat-card"><div class="stat-num">+1200</div><div class="stat-label">Automatizaciones implementadas en LatAm</div></div>
+        <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Años automatizando con IA</div></div>
+        <div class="stat-card"><div class="stat-num">+23</div><div class="stat-label">Equipos entrenados en metodología IA</div></div>
+        <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">Países en LatAm</div></div>
       </div>
     </div>
   </section>
-
-  <!-- ===== EVENTOS ===== -->
-  <section id="eventos" class="section">
+  <section id="eventos" class="section section-dark">
     <div class="container">
-      <div class="section-eyebrow">// 03 — Próximos eventos</div>
-      <p class="section-intro">Cupo limitado: sólo 100 lugares disponibles.</p>
-
+      <div class="eyebrow">03 — Próximos eventos</div>
+      <p class="section-intro">Cupo limitado: sólo 100 lugares disponibles para el próximo webinar.</p>
       <div class="event-featured">
-        <div class="live-badge">
-          <span class="live-dot"></span>
-          <span>En vivo esta semana</span>
+        <div class="event-date-block"><div class="event-date-day">16</div><div class="event-date-month">Mayo</div><div class="event-time">12:00 PM CDMX</div></div>
+        <div>
+          <div class="live-badge"><span class="live-dot"></span><span>En vivo esta semana</span></div>
+          <h3 class="event-title">ChatGPT no es el problema. <em>Usarlo sin método, sí.</em></h3>
+          <p class="event-desc">En una hora vas a aprender cómo hacer que la IA entienda tu negocio, trabaje con tus reglas y te devuelva horas cada semana.</p>
+          <div class="event-meta"><span>Gratis</span><span>1 hora</span><span>Sin código</span></div>
         </div>
-        <div class="event-date">16 de mayo · 12PM CDMX</div>
-        <h3 class="event-title">ChatGPT no es<br>el problema.</h3>
-        <p class="event-desc">Usarlo sin método, sí. En una hora vas a aprender cómo hacer que la IA entienda tu negocio, trabaje con tus reglas y te devuelva horas cada semana.</p>
-        <div class="event-meta">
-          <span>🟡 Gratis</span>
-          <span>1 hora</span>
-          <span>Sin código</span>
-        </div>
-        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=evento-featured" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-lg">
-          Reserva tu lugar gratis →
-        </a>
+        <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=evento-featured" target="_blank" rel="noopener noreferrer" class="btn btn-warm">Reserva tu lugar →</a>
       </div>
-
       <div class="events-grid">
-        <a href="#" class="event-card">
-          <div class="event-card-date">Próximamente</div>
-          <div class="event-card-type">// Workshop</div>
-          <h4 class="event-card-title">Workshop Claude</h4>
-          <p class="event-card-desc">Domina Claude para analizar, escribir y resolver trabajo real con método.</p>
-          <div class="badge badge-success">Junio</div>
-          <div><span class="event-card-link">Más info →</span></div>
-        </a>
-        <a href="#" class="event-card">
-          <div class="event-card-date">Próximamente</div>
-          <div class="event-card-type">// Workshop</div>
-          <h4 class="event-card-title">Workshop Claude Pro</h4>
-          <p class="event-card-desc">Crea flujos de trabajo con Claude para estrategia, documentos y decisiones.</p>
-          <div class="badge badge-success">Junio</div>
-          <div><span class="event-card-link">Más info →</span></div>
-        </a>
-        <a href="#" class="event-card">
-          <div class="event-card-date">Próximamente</div>
-          <div class="event-card-type">// Workshop</div>
-          <h4 class="event-card-title">Workshop Automatizaciones</h4>
-          <p class="event-card-desc">Automatiza tu workflow con Make, n8n y APIs.</p>
-          <div class="badge badge-success">Junio</div>
-          <div><span class="event-card-link">Más info →</span></div>
-        </a>
+        <a href="#" class="event-card"><div class="event-card-meta"><span class="event-card-date">Junio · Próximamente</span><span class="event-card-tag">Workshop</span></div><h4 class="event-card-title">Workshop Claude</h4><p class="event-card-desc">Domina Claude para analizar, escribir y resolver trabajo real con método.</p><span class="link-arrow">Más información →</span></a>
+        <a href="#" class="event-card"><div class="event-card-meta"><span class="event-card-date">Junio · Próximamente</span><span class="event-card-tag">Workshop</span></div><h4 class="event-card-title">Workshop Claude Pro</h4><p class="event-card-desc">Crea flujos de trabajo con Claude para estrategia, documentos y decisiones.</p><span class="link-arrow">Más información →</span></a>
+        <a href="#" class="event-card"><div class="event-card-meta"><span class="event-card-date">Junio · Próximamente</span><span class="event-card-tag">Workshop</span></div><h4 class="event-card-title">Workshop Automatizaciones</h4><p class="event-card-desc">Automatiza tu workflow con Make, n8n y APIs. Método antes que herramienta.</p><span class="link-arrow">Más información →</span></a>
       </div>
     </div>
   </section>
-
-  <!-- ===== VIDEOS ===== -->
-  <section id="videos" class="section">
+  <section id="videos" class="section section-dark">
     <div class="container">
-      <div class="section-eyebrow">// 04 — Videos recientes</div>
-      <p class="section-intro">
-        Suscríbete al canal → <a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer" class="channel-link">@SoyAngelRochaIA</a>
-      </p>
-
+      <div class="eyebrow">04 — Videos recientes</div>
+      <p class="section-intro">Suscríbete al canal → <a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer" class="channel-link">@SoyAngelRochaIA</a></p>
       <a href="#" class="video-featured" target="_blank" rel="noopener noreferrer">
-        <div class="video-thumb">
-          <img src="https://placehold.co/1280x720/141414/A3A3A3?text=Video+Destacado" alt="El framework P.A.S.O. explicado en 12 minutos" width="1280" height="720" loading="lazy">
-          <div class="play-btn">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-          </div>
-          <div class="video-duration">12:34</div>
-        </div>
-        <h3>El framework P.A.S.O. explicado en 12 minutos</h3>
-        <div class="video-meta">Hace 3 días · 8.4K vistas</div>
+        <div class="video-thumb"><img src="https://placehold.co/1280x720/0E1428/B5C0D5?text=Video+Destacado" alt="El framework P.A.S.O. explicado en 12 minutos" width="1280" height="720" loading="lazy"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div class="video-duration">12:34</div></div>
+        <div><div class="event-card-tag" style="margin-bottom:16px">Más visto · Esta semana</div><h3>El framework P.A.S.O. explicado en 12 minutos</h3><div class="video-meta">Hace 3 días · 8.4K vistas</div><span class="link-arrow">Ver en YouTube →</span></div>
       </a>
-
       <div class="videos-grid">
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+1" alt="Video 1" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">8:42</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">5 prompts que uso todos los días</h4>
-            <div class="video-card-meta">Hace 1 semana · 12K vistas</div>
-          </div>
-        </a>
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+2" alt="Video 2" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">14:20</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">Por qué tus prompts no funcionan</h4>
-            <div class="video-card-meta">Hace 2 semanas · 9.1K vistas</div>
-          </div>
-        </a>
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+3" alt="Video 3" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">22:15</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">Make + Claude: tu primera automatización</h4>
-            <div class="video-card-meta">Hace 3 semanas · 6.7K vistas</div>
-          </div>
-        </a>
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+4" alt="Video 4" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">11:05</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">El error #1 al aprender IA en 2026</h4>
-            <div class="video-card-meta">Hace 1 mes · 15K vistas</div>
-          </div>
-        </a>
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+5" alt="Video 5" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">18:33</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">Context engineering: la nueva habilidad</h4>
-            <div class="video-card-meta">Hace 1 mes · 7.3K vistas</div>
-          </div>
-        </a>
-        <a href="#" class="video-card" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://placehold.co/640x360/141414/A3A3A3?text=Video+6" alt="Video 6" width="640" height="360" loading="lazy">
-            <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-            <div class="video-duration">25:10</div>
-          </div>
-          <div class="video-card-info">
-            <h4 class="video-card-title">Cómo cobrar por proyectos de IA</h4>
-            <div class="video-card-meta">Hace 2 meses · 10K vistas</div>
-          </div>
-        </a>
+        <a href="#" class="video-card"><div class="video-thumb"><img src="https://placehold.co/640x360/0E1428/B5C0D5?text=Video+1" alt="Video 1" width="640" height="360" loading="lazy"><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div class="video-duration">8:42</div></div><div class="video-card-info"><h4 class="video-card-title">5 prompts que uso todos los días</h4><div class="video-card-meta">Hace 1 semana · 12K vistas</div></div></a>
+        <a href="#" class="video-card"><div class="video-thumb"><img src="https://placehold.co/640x360/0E1428/B5C0D5?text=Video+2" alt="Video 2" width="640" height="360" loading="lazy"><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div class="video-duration">14:20</div></div><div class="video-card-info"><h4 class="video-card-title">Por qué tus prompts no funcionan</h4><div class="video-card-meta">Hace 2 semanas · 9.1K vistas</div></div></a>
+        <a href="#" class="video-card"><div class="video-thumb"><img src="https://placehold.co/640x360/0E1428/B5C0D5?text=Video+3" alt="Video 3" width="640" height="360" loading="lazy"><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div class="video-duration">22:15</div></div><div class="video-card-info"><h4 class="video-card-title">Make + Claude: tu primera automatización</h4><div class="video-card-meta">Hace 3 semanas · 6.7K vistas</div></div></a>
       </div>
-
-      <a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer" class="videos-cta">
-        Ver todos los videos en youtube →
-      </a>
+      <a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer" class="link-arrow">Ver todos los videos en YouTube →</a>
     </div>
   </section>
-
-  <!-- ===== PRODUCTOS ===== -->
   <section id="productos" class="section">
     <div class="container">
-      <div class="section-eyebrow">// 05 — Trabaja conmigo</div>
+      <div class="eyebrow">05 — Trabajar conmigo</div>
       <div class="products-grid">
-        <div class="product-card product-lite">
-          <span class="product-badge badge-free">Gratis</span>
-          <h3 class="product-title">Sistema de Implementación IA (SIA) LITE</h3>
-          <p class="product-desc">Tu primera entrada al SIA. Prompts probados, plantillas y un roadmap de 7 días.</p>
-          <ul class="product-features">
-            <li>Prompts listos para copiar</li>
-            <li>Plantilla P.A.S.O.</li>
-            <li>Roadmap 7 días</li>
-          </ul>
-          <a href="#" class="product-cta">Descargar gratis →</a>
-        </div>
-
-        <div class="product-card product-full">
-          <span class="product-badge badge-popular">Más popular</span>
-          <h3 class="product-title">Sistema de Implementación IA (SIA) FULL</h3>
-          <p class="product-desc">El SIA completo. Entrenamiento avanzado, comunidad privada y actualizaciones mensuales.</p>
-          <ul class="product-features">
-            <li>Todo lo de LITE</li>
-            <li>Módulos avanzados P.A.S.O.</li>
-            <li>Comunidad privada</li>
-            <li>Automatizaciones exportables</li>
-            <li>Soporte por 90 días</li>
-          </ul>
-          <a href="#" class="product-cta">Quiero el SIA →</a>
-        </div>
-
-        <div class="product-card product-1on1">
-          <span class="product-badge badge-highticket">High-ticket</span>
-          <h3 class="product-title">Sesión privada 1:1</h3>
-          <p class="product-desc">Para empresas y consultores serios. Aplicación requerida.</p>
-          <ul class="product-features">
-            <li>90 minutos contigo</li>
-            <li>Diagnóstico de tu stack actual</li>
-            <li>Roadmap de implementación</li>
-          </ul>
-          <a href="#" class="product-cta">Agendar llamada →</a>
-        </div>
+        <div class="product-card product-lite"><span class="product-badge">Gratis</span><h3 class="product-title">SIA · LITE</h3><p class="product-desc">Tu primera entrada al Sistema de Implementación IA. Prompts probados, plantillas y un roadmap de 7 días.</p><ul class="product-features"><li>Prompts listos para copiar</li><li>Plantilla del framework P.A.S.O.</li><li>Roadmap de 7 días</li></ul><a href="#" class="product-cta">Descargar gratis →</a></div>
+        <div class="product-card product-full"><span class="product-badge">Más popular</span><h3 class="product-title">SIA · FULL</h3><p class="product-desc">El Sistema de Implementación IA completo. Entrenamiento avanzado, comunidad privada y actualizaciones mensuales.</p><ul class="product-features"><li>Todo lo de LITE incluido</li><li>Módulos avanzados P.A.S.O.</li><li>Comunidad privada</li><li>Automatizaciones exportables</li><li>Soporte directo por 90 días</li></ul><a href="#" class="product-cta">Quiero el sistema →</a></div>
+        <div class="product-card product-1on1"><span class="product-badge">High-ticket</span><h3 class="product-title">Sesión privada 1:1</h3><p class="product-desc">Para empresas y consultores serios. Aplicación requerida.</p><ul class="product-features"><li>90 minutos contigo</li><li>Diagnóstico de tu stack actual</li><li>Roadmap de implementación</li></ul><a href="#" class="product-cta">Agendar llamada →</a></div>
       </div>
     </div>
   </section>
-
-  <!-- ===== CTA FINAL ===== -->
   <section class="cta-final">
-    <h2>¿Listo para<br>dejar de<br>improvisar?</h2>
-    <p>El próximo webinar es esta semana. Es gratis. Y va a cambiar cómo usas IA.</p>
-    <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=cta-final" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
-      Reservar mi lugar ahora →
-    </a>
+    <div class="eyebrow">06 — Empieza esta semana</div>
+    <h2>¿Listo para dejar de improvisar <em>y empezar a dirigir?</em></h2>
+    <p>El próximo webinar es esta semana. Es gratuito. Y va a cambiar cómo usas IA en tu trabajo real.</p>
+    <a href="https://webinar.iaacademy.mx/webinar-gratis/landing?utm_source=site&utm_medium=cta-final" target="_blank" rel="noopener noreferrer" class="btn btn-warm">Reservar mi lugar ahora →</a>
   </section>
-
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">Angel Rocha <span style="color: var(--primary);">•</span></div>
-
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#eventos">Eventos</a></li>
-            <li><a href="#videos">Videos</a></li>
-            <li><a href="#productos">Productos</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Redes</h4>
-          <ul>
-            <li><a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-              YouTube
-            </a></li>
-            <li><a href="https://www.instagram.com/soyangelrochaia/" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              Instagram
-            </a></li>
-            <li><a href="https://www.linkedin.com/in/soyangelrochaia/" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a></li>
-            <li><a href="https://x.com/soyangelrochaia" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.7 4-7.4 7-4.2 1.1-.1 2.2.3 3 .8z"/></svg>
-              X (Twitter)
-            </a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <div class="footer-contact">hola@iaacademy.mx</div>
-          <div class="footer-contact-muted">IA Academy · México · LatAm</div>
-        </div>
+      <div class="footer-top">
+        <div class="footer-brand"><div class="footer-logo">Angel Rocha<span class="dot">.</span></div><p class="footer-tag">Formación y consultoría en IA. Strategy First — dirección antes que herramientas.</p></div>
+        <div class="footer-col"><h4>Navegación</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#numeros">Trayectoria</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#videos">Videos</a></li><li><a href="#productos">Trabajar conmigo</a></li></ul></div>
+        <div class="footer-col"><h4>Redes</h4><ul><li><a href="https://www.youtube.com/@SoyAngelRochaIA" target="_blank" rel="noopener noreferrer">YouTube</a></li><li><a href="https://www.instagram.com/soyangelrochaia/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.linkedin.com/in/soyangelrochaia/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://x.com/soyangelrochaia" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li></ul></div>
+        <div class="footer-col"><h4>Contacto</h4><div>hola@iaacademy.mx</div><div class="footer-contact-muted">IA Academy<br>México · LatAm</div></div>
       </div>
-
-      <div class="footer-bottom">
-        <div>© 2026 Angel Rocha · IA Academy</div>
-        <div class="mono">Hecho con estrategia, no con improvisación.</div>
-      </div>
+      <div class="footer-bottom"><div>© 2026 Angel Rocha · IA Academy</div><div>Hecho con estrategia, no con improvisación.</div></div>
     </div>
   </footer>
-
-  <!-- ===== SCRIPTS ===== -->
   <script>
-    // Nav border on scroll
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }, { passive: true });
-
-    // Mobile menu
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-    navToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
-    mobileMenuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-
-    document.querySelectorAll('[data-close-menu]').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
-
-    // Close mobile menu on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        mobileMenu.classList.remove('open');
-      }
-    });
+    const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+    const navToggle=document.getElementById('navToggle'),mobileMenu=document.getElementById('mobileMenu'),mobileMenuClose=document.getElementById('mobileMenuClose');
+    navToggle.addEventListener('click',()=>mobileMenu.classList.add('open'));mobileMenuClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+    document.querySelectorAll('[data-close-menu]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));document.addEventListener('keydown',e=>{if(e.key==='Escape')mobileMenu.classList.remove('open')});
+    (function(){const toggle=document.getElementById('themeToggle'),tip=document.getElementById('themeTooltip'),html=document.documentElement,order=['light','dark','auto'],tips={light:'Modo claro',dark:'Modo oscuro',auto:'Auto (sistema)'};
+      function apply(theme){const prefers=window.matchMedia('(prefers-color-scheme: dark)').matches,isDark=theme==='dark'||(theme==='auto'&&prefers);html.dataset.theme=theme;html.classList.toggle('is-dark',isDark);html.classList.toggle('is-light',!isDark);if(tip)tip.textContent=tips[theme];try{localStorage.setItem('ar-theme',theme)}catch(e){}}
+      if(tip)tip.textContent=tips[html.dataset.theme||'auto'];toggle.addEventListener('click',()=>{const current=html.dataset.theme||'auto';apply(order[(order.indexOf(current)+1)%order.length])});window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(html.dataset.theme==='auto')apply('auto')});
+    })();
   </script>
-
 </body>
 </html>
